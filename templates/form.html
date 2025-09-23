@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Predictive Risk Scoring</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<style>
+        body {
+            background: linear-gradient(135deg, #0d1b2a, #1b3a73);
+            color: #cfd8dc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            flex: 1 0 auto;
+        }
+        .form-label {
+            color: #e0e0e0;
+        }
+        .text-muted {
+            color: #cfd8dc99 !important;
+        }
+        .form-control, .form-select {
+            background-color: #12253b;
+            color: #cfd8dc66;
+            border: 1px solid #2a4d8f;
+        }
+        .form-control::placeholder {
+            color: #cfd8dc66;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #82aaff;
+            box-shadow: 0 0 6px 1px #82aaff;
+            background-color: #12253b;
+            color: #ffffff;
+        }
+        h1, h2, h3, h4 {
+            color: #bbdefb;
+        }
+        .btn-primary {
+            background-color: #2270ee;
+            border-color: #1f5ecd;
+        }
+        .btn-primary:hover {
+            background-color: #1f5ecd;
+            border-color: #1a50b8;
+        }
+        .alert-primary {
+            background-color: #1a2f5e;
+            color: #bbdefb;
+            border: none;
+        }
+        footer {
+            flex-shrink: 0;
+            background-color: #12253b;
+            color: #82aaff;
+            text-align: center;
+            padding: 1em 0;
+            font-size: 0.9em;
+            box-shadow: inset 0 1px 3px rgb(18 37 59 / 0.7);
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+        }
+        a {
+            color: #82aaff;
+        }
+        a:hover {
+            color: #bbdefb;
+            text-decoration: none;
+        }
+        .card {
+            background-color: #ffffff0f;
+            border: 1px solid #2a4d8f;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="mb-4 text-center">Predictive Risk Scoring</h1>
+        <p class="lead">This project leverages advanced machine learning techniques to provide personalized health risk scores based on individual demographic, lifestyle, and clinical data. Using a LightGBM predictive model trained on real-world health data, the system estimates the probability that an individual may have or develop a particular health condition, such as heart disease or related chronic illnesses.</p>
+        <h3>Purpose and Benefits</h3>
+        <ul>
+            <li>Early Identification: Detect individuals at elevated risk before clinical symptoms appear, enabling earlier interventions and prevention strategies.</li>
+            <li>Personalized Risk Assessment: Tailor healthcare decisions and lifestyle recommendations based on a quantifiable risk score unique to each individual.</li>
+            <li>Resource Optimization: Assist healthcare providers and actuaries in prioritizing patients who may benefit most from monitoring, further testing, or treatment.</li>
+            <li>Data-Driven Decisions: Empower clinicians, insurers, and patients with actionable insights generated from robust statistical models.</li>
+        </ul>
+        <h3>Outcomes and Impact</h3>
+        <p class="lead">The platform delivers an interpretable risk score on a scale from 0 to 100, representing the likelihood of possessing or developing the target condition. This score serves as a practical tool for improving health outcomes, reducing costly complications, and supporting evidence-based risk management in healthcare and insurance settings.</p>
+        <p class="lead">By integrating data science with actuarial principles, the project exemplifies the future of precision medicine and personalized health risk prediction.</p>
+        <div class="card mx-auto p-5 mt-5" style="width: 800px;">
+                <h2 class="mb-4 text-center">Data Collection</h2>
+                <p class="text-muted text-center">Please provide the following information:</p>
+        <form action="/predict" method="post" class="mx-auto" style="width: 600px;">
+            {% set yes_no_fields = ['smoker', 'nic_other', 'cannabis', 'opioids', 'other_drugs', 'addiction', 'diabetes', 'hds', 'asthma', 'immune_defic', 'family_cancer', 'family_heart_disease', 'family_cholesterol'] %}
+            {% for feature in features %}
+            <label for="{{ feature }}" class="form-label">{{ labels.get(feature, feature.replace('_', ' ').title()) }}</label>
+
+            {% if feature == 'sex' %}
+                <select id="sex" name="sex" class="form-select mb-4" required>
+                    <option value="" selected disabled>Select Sex</option>
+                    <option value="m">Male</option>
+                    <option value="f">Female</option>
+                </select>
+                {% elif feature in yes_no_fields %}
+                <select id="{{ feature }}" name="{{ feature }}" class="form-select mb-4" required>
+                    <option value="" selected disabled>Choose yes or no</option>
+                    <option value="y">Yes</option>
+                    <option value="n">No</option>
+                </select>
+                {% else %}
+                <input
+                    type="text"
+                    class="form-control mb-4"
+                    id="{{ feature }}"
+                    name="{{ feature }}"
+                    placeholder="Enter {{ labels.get(feature, feature.replace('_', ' ').title()) }}"
+                    required
+                />
+                {% endif %}
+            {% endfor %}
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary px-5 mt-3">Get Risk Score</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    <footer>
+    &copy; 2025 Harikrishnan D. All rights reserved.
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+</body>
+</html>
