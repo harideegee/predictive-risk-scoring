@@ -69,7 +69,7 @@ model.fit(X, y)
 # Flask App
 @app.route('/')
 def home():
-    return render_template('form.html', features=features, labels=labels)
+    return render_template('index.html', features=features, labels=labels)
 
 @app.route('/predict', methods=['POST'])
 def predict():
