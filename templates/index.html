@@ -94,10 +94,10 @@
         <h3>Outcomes and Impact</h3>
         <p class="lead">The platform delivers an interpretable risk score on a scale from 0 to 100, representing the likelihood of possessing or developing the target condition. This score serves as a practical tool for improving health outcomes, reducing costly complications, and supporting evidence-based risk management in healthcare and insurance settings.</p>
         <p class="lead">By integrating data science with actuarial principles, the project exemplifies the future of precision medicine and personalized health risk prediction.</p>
-        <div class="card mx-auto p-5 mt-5" style="width: 800px;">
+        <div class="card mx-auto p-5 mt-5 col-sm-10 col-md-8">
                 <h2 class="mb-4 text-center">Data Collection</h2>
                 <p class="text-muted text-center">Please provide the following information:</p>
-        <form action="/predict" method="post" class="mx-auto" style="width: 600px;">
+        <form action="/predict" method="post" class="mx-auto" style="width: 90%;">
             {% set yes_no_fields = ['smoker', 'nic_other', 'cannabis', 'opioids', 'other_drugs', 'addiction', 'diabetes', 'hds', 'asthma', 'immune_defic', 'family_cancer', 'family_heart_disease', 'family_cholesterol'] %}
             {% for feature in features %}
             <label for="{{ feature }}" class="form-label">{{ labels.get(feature, feature.replace('_', ' ').title()) }}</label>
@@ -122,10 +122,10 @@
                     <input type="number" min="0" max="2" class="form-control mb-4" id="ls_danger" name="ls_danger" placeholder="Enter Lifestyle Danger Level" required>
                 {% elif feature == 'sys_bp' %}
                     <br><small class="form-text text-muted">(Normal: 90–120 mmHg; Elevated: 121–139; High: 140+)</small>
-                    <input type="number" min="70" max="250" class="form-control mb-4" id="sys_bp" name="sys_bp" placeholder="Enter Systolic Blood Pressure (in mmHg)" required>
+                    <input type="number" min="0" max="250" class="form-control mb-4" id="sys_bp" name="sys_bp" placeholder="Enter Systolic Blood Pressure (in mmHg)" required>
                 {% elif feature == 'cholesterol' %}
                     <br><small class="form-text text-muted">(Desirable: &lt; 100 mg/dL; Borderline: 100-160 mg/dL; High: 160+ mg/dL)</small>
-                    <input type="number" min="100" max="400" class="form-control mb-4" id="cholesterol" name="cholesterol" placeholder="Enter LDL Cholesterol Level (in mg/dL)" required>
+                    <input type="number" min="0" max="400" class="form-control mb-4" id="cholesterol" name="cholesterol" placeholder="Enter LDL Cholesterol Level (in mg/dL)" required>
                 {% else %}
                 <input
                     type="text"
