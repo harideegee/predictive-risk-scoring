@@ -114,6 +114,18 @@
                     <option value="y">Yes</option>
                     <option value="n">No</option>
                 </select>
+                {% elif feature == 'occup_danger' %}
+                    <br><small class="form-text text-muted">(0 = Low risk, 1 = Moderate risk, 2 = High risk)</small>
+                    <input type="number" min="0" max="2" class="form-control mb-4" id="occup_danger" name="occup_danger" placeholder="Enter Occupation Danger Level" required>
+                {% elif feature == 'ls_danger' %}
+                    <br><small class="form-text text-muted">(0 = Low risk, 1 = Moderate risk, 2 = High risk)</small>
+                    <input type="number" min="0" max="2" class="form-control mb-4" id="ls_danger" name="ls_danger" placeholder="Enter Lifestyle Danger Level" required>
+                {% elif feature == 'sys_bp' %}
+                    <br><small class="form-text text-muted">(Normal: 90–120 mmHg; Elevated: 121–139; High: 140+)</small>
+                    <input type="number" min="70" max="250" class="form-control mb-4" id="sys_bp" name="sys_bp" placeholder="Enter Systolic Blood Pressure (in mmHg)" required>
+                {% elif feature == 'cholesterol' %}
+                    <br><small class="form-text text-muted">(Desirable: &lt; 100 mg/dL; Borderline: 100-160 mg/dL; High: 160+ mg/dL)</small>
+                    <input type="number" min="100" max="400" class="form-control mb-4" id="cholesterol" name="cholesterol" placeholder="Enter LDL Cholesterol Level (in mg/dL)" required>
                 {% else %}
                 <input
                     type="text"
